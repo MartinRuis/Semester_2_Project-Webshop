@@ -19,23 +19,33 @@ namespace Webshop.DAL
             string hashed_password = GenerateHash(password, salt);
 
             List<MySqlParameter> parameters = new List<MySqlParameter>();
-
-            parameters.Add(new MySqlParameter("@first_name", first_name));
-            parameters.Add(new MySqlParameter("@last_name", last_name));
-            parameters.Add(new MySqlParameter("@initials", initials));
-            parameters.Add(new MySqlParameter("@is_admin", 1));
-            parameters.Add(new MySqlParameter("@email", email));
-            parameters.Add(new MySqlParameter("@delivery_address", delivery_address));
-            parameters.Add(new MySqlParameter("@hashed_passwodd", hashed_password));
-            parameters.Add(new MySqlParameter("@salt", salt));
             
+            parameters.Add(new MySqlParameter("@first_name", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@last_name", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@initials", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@is_admin", MySqlDbType.TinyBlob));
+            parameters.Add(new MySqlParameter("@email", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@delivery_address", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@hashed_passwodd", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("@salt", MySqlDbType.VarChar));
+            parameters[0].Value = first_name;
+            parameters[1].Value = last_name;
+            parameters[2].Value = initials;
+            parameters[3].Value = 0;
+            parameters[4].Value = email;
+            parameters[5].Value = delivery_address;
+            parameters[6].Value = hashed_password;
+            parameters[7].Value = salt;
             ExecuteInputProc("create_account", parameters);
         }
 
         //delete an account
         public void Delete(int account_id)
         {
+            List<MySqlParameter> parameters = new List<MySqlParameter>();
+            parameters.Add(new MySqlParameter("@account_id", 1));
 
+            ExecuteInputProc("delete_account", parameters);
         }
 
         //get an account
