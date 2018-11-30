@@ -9,12 +9,13 @@ namespace Webshop.Models
     public class Account
     {
         //fields
-        public int AccountId { get; private set; }
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
-        public string Initials { get; private set; }
-        public string Email { get; private set; }
-        public string DeliveryAddress { get; private set; }
+        public int AccountId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Initials { get; set; }
+        public string Email { get; set; }
+        public string DeliveryAddress { get; set; }
+        public string Password { get; set; }
 
         //constructor
         //public Account(int account_id, string first_name, string last_name, string initials, string email, string delivery_address)

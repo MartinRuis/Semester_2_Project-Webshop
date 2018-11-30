@@ -23,16 +23,16 @@ namespace Webshop.DAL
                     try
                     {
                         conn.Open();
-                        
-                        foreach (MySqlParameter parameter in parameters)
+                        if(parameters != null)
                         {
-                            Console.Write(parameter.ParameterName.ToString() + ": ");
-                            Console.WriteLine(parameter.Value.ToString());
-                            command.Parameters.Add(parameter);
+                            foreach (MySqlParameter parameter in parameters)
+                            {
+                                Console.Write(parameter.ParameterName.ToString() + ": ");
+                                Console.WriteLine(parameter.Value.ToString());
+                                command.Parameters.Add(parameter);
+                            }
                         }
-   
                         command.ExecuteNonQuery();
-                                                
                     }
                     catch (MySqlException e)
                     {

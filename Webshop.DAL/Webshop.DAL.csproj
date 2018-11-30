@@ -58,6 +58,7 @@
     <Compile Include="AccountContext.cs" />
     <Compile Include="OrderContext.cs" />
     <Compile Include="ProductContext.cs" />
+    <Compile Include="ProductTypeContext.cs" />
     <Compile Include="SqlContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

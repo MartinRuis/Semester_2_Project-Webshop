@@ -10,10 +10,27 @@ namespace Webshop.DAL
 {
     public class ProductContext : SqlContext
     {
-        public bool Create()
+        public bool Create(Product product)
         {
-            throw new NotImplementedException();
-            
+            List<MySqlParameter> parameters = new List<MySqlParameter>();
+            parameters.Add(new MySqlParameter("product_name1", MySqlDbType.VarChar) { Value = product.ProductName});
+            parameters.Add(new MySqlParameter("delivery_time1", MySqlDbType.Int32) { Value = product.DeliveryTime});
+            parameters.Add(new MySqlParameter("price1", MySqlDbType.Decimal) { Value = product.Price });
+            parameters.Add(new MySqlParameter("producttype_id1", MySqlDbType.Int32) { Value = product.ProductTypeID});
+            parameters.Add(new MySqlParameter("manufacturer_id1", MySqlDbType.Int32) { Value = product.ManufacuturerID});
+            parameters.Add(new MySqlParameter("active1", MySqlDbType.TinyBlob) { Value = product.Active });
+
+            try
+            {
+                ExecuteInputProc("create_product", parameters);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+
         }
 
         public Product Get()
