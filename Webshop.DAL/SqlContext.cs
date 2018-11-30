@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace Webshop.DAL
 {
@@ -22,24 +23,14 @@ namespace Webshop.DAL
                     try
                     {
                         conn.Open();
-
-                        //foreach (MySqlParameter parameter in parameters)
-                        //{
-                        //    Console.Write(parameter.ParameterName.ToString() + ": ");
-                        //    Console.WriteLine(parameter.Value.ToString()); 
-                        //    parameter.Direction = ParameterDirection.Input;
-                        //    command.Parameters.Add(parameter);
-                        //}
-                        command.Parameters.Add(new MySqlParameter("@first_name", MySqlDbType.VarChar) { Value = "Martin" });
-                        command.Parameters.Add(new MySqlParameter("@last_name", MySqlDbType.VarChar) { Value = "Ruis" });
-                        command.Parameters.Add(new MySqlParameter("@initials", MySqlDbType.VarChar) { Value = "G.B." });
-                        command.Parameters.Add(new MySqlParameter("@is_admin", MySqlDbType.TinyBlob) { Value = 1 });
-                        command.Parameters.Add(new MySqlParameter("@email", MySqlDbType.VarChar) { Value = "ruismartin98@gmail.com" });
-                        command.Parameters.Add(new MySqlParameter("@delivery_address", MySqlDbType.VarChar) { Value = "Vestdijk 33A" });
-                        command.Parameters.Add(new MySqlParameter("@hashed_passwodd", MySqlDbType.VarChar) { Value = "Wachtwoord" });
-                        command.Parameters.Add(new MySqlParameter("@salt", MySqlDbType.VarChar) { Value = "12345" });
-                        Console.WriteLine(command.Parameters[0].Value.ToString());
-                        Console.ReadKey();
+                        
+                        foreach (MySqlParameter parameter in parameters)
+                        {
+                            Console.Write(parameter.ParameterName.ToString() + ": ");
+                            Console.WriteLine(parameter.Value.ToString());
+                            command.Parameters.Add(parameter);
+                        }
+   
                         command.ExecuteNonQuery();
                                                 
                     }

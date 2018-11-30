@@ -13,21 +13,21 @@ namespace Webshop.DAL
     public class AccountContext : SqlContext
     {
         //create an account
-        public void Create(string first_name, string last_name, string initials, string email, string delivery_address, string password)
+        public bool Create(string first_name, string last_name, string initials, string email, string delivery_address, string password)
         {
             string salt = CreateSalt();
             string hashed_password = GenerateHash(password, salt);
 
             List<MySqlParameter> parameters = new List<MySqlParameter>();
             
-            parameters.Add(new MySqlParameter("@first_name", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@last_name", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@initials", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@is_admin", MySqlDbType.TinyBlob));
-            parameters.Add(new MySqlParameter("@email", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@delivery_address", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@hashed_passwodd", MySqlDbType.VarChar));
-            parameters.Add(new MySqlParameter("@salt", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("first_name1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("last_name1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("initials1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("is_admin1", MySqlDbType.TinyBlob));
+            parameters.Add(new MySqlParameter("email1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("delivery_address1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("hashed_passwodd1", MySqlDbType.VarChar));
+            parameters.Add(new MySqlParameter("salt1", MySqlDbType.VarChar));
             parameters[0].Value = first_name;
             parameters[1].Value = last_name;
             parameters[2].Value = initials;
@@ -36,16 +36,33 @@ namespace Webshop.DAL
             parameters[5].Value = delivery_address;
             parameters[6].Value = hashed_password;
             parameters[7].Value = salt;
-            ExecuteInputProc("create_account", parameters);
+            try
+            {
+                ExecuteInputProc("create_account", parameters);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         //delete an account
-        public void Delete(int account_id)
+        public bool Delete(int account_id)
         {
             List<MySqlParameter> parameters = new List<MySqlParameter>();
-            parameters.Add(new MySqlParameter("@account_id", 1));
-
-            ExecuteInputProc("delete_account", parameters);
+            parameters.Add(new MySqlParameter("@account_id", account_id));
+            try
+            {
+                ExecuteInputProc("delete_account", parameters);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         //get an account
