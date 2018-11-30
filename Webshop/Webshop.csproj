@@ -192,6 +192,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -209,6 +210,20 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Webshop.DAL\Webshop.DAL.csproj">
+      <Project>{04bf2d48-166c-4d8b-b493-4d0a351f8bd9}</Project>
+      <Name>Webshop.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webshop.Logic\Webshop.Logic.csproj">
+      <Project>{da95a209-470b-45ae-aa3d-a24f9bec003a}</Project>
+      <Name>Webshop.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webshop.Models\Webshop.Models.csproj">
+      <Project>{af92d5af-b77c-4566-b848-c8e2ed8ff24c}</Project>
+      <Name>Webshop.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
